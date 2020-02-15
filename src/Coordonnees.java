@@ -31,5 +31,10 @@ public class Coordonnees {
     public void setY(int y) {
         this.y = y;
     }
+    
+    public String toString() {
+    	
+    	return "X:"+this.getX()+" / Y:"+this.y ;
+    }
 
 }

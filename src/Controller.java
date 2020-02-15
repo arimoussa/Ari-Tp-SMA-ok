@@ -43,9 +43,27 @@ public class Controller implements ActionListener {
         List<Thread> tAgents = new ArrayList<>();
 
         //Demarrer tous les agents
-
+        for (Agent a : agents) {
+            //a.addObserver(view);
+            Thread t = new Thread(a);
+            tAgents.add(t);
+            t.start();
+        }
 
         view.update();
+        
+        
+        //Attendre la fin des agents
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                for (Thread t : tAgents)
+                    try {
+                        t.join();
+                    } catch (InterruptedException e1) {
+                    }
+            }
+        }).start();
 
 
     }

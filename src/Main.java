@@ -67,7 +67,7 @@ public class Main {
         float kdepot = (float) 0.3;
         int nbAgents = 15, nbObjects = 50, mem = 10;
 
-        Grille g = new Grille(30);
+        Grille g = new Grille(50);
 
 
         MainWindow mw = new MainWindow(g);

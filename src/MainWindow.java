@@ -8,6 +8,7 @@ import java.awt.HeadlessException;
 import java.awt.Point;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -28,7 +29,7 @@ public class MainWindow extends JFrame implements Observer {
     private JPanel jpcases;
     private JButton bStart;
     private GridLayout g;
-    private Map<Point,JPanel> cases;
+    private Map<Coordonnees,JPanel> cases;
     
     public MainWindow(Grille modGrille) throws HeadlessException {
         this.modGrille = modGrille;
@@ -71,7 +72,7 @@ public class MainWindow extends JFrame implements Observer {
                 uneCase.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY));
                 uneCase.setPreferredSize(new Dimension(15, 15));
                 jpcases.add(uneCase);
-                cases.put(new Point(x,y),uneCase);
+                cases.put(new Coordonnees(x,y),uneCase);
             }
         }
         this.update();
@@ -98,9 +99,9 @@ public class MainWindow extends JFrame implements Observer {
 
                 Color c = Color.BLACK;
                 if (ca != null) {
-                    if (ca instanceof Objet && ((Objet) ca).getName().equals("A"))
+                    if (ca instanceof Objet && ((Objet) ca).getName().equals('A'))
                         c =  new Color(0, 0, 255);
-                    else if ( ca instanceof Objet &&  ((Objet) ca).getName().equals("B"))
+                    else if ( ca instanceof Objet &&  ((Objet) ca).getName().equals('B'))
                         c = new Color(255, 0, 0);
                     else if (ca instanceof Agent)
                     {
@@ -117,9 +118,21 @@ public class MainWindow extends JFrame implements Observer {
                     }
                 }
 
+    	        for (Entry<Coordonnees, JPanel> current : cases.entrySet() ) {
+
+    	        	if(current.getKey().equals(p) ) {
+        	        	//System.out.println("Key:"+ current.getKey().toString() );
+        	        	//System.out.println("Value:" );
+        	        	current.getValue().setBackground(c);
+    	        	}
+
+    	        	
+    	        }
+               /* 
                 if( cases.get(p) != null ) {
                     cases.get(p).setBackground(c);
                 }
+                */
             }
 
         p.validate();
