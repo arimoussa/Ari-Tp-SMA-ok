@@ -48,7 +48,7 @@ public class MainWindow extends JFrame implements Observer {
         JPanel pNorth = new JPanel();
         pNorth.setLayout(new BoxLayout(pNorth, BoxLayout.PAGE_AXIS));
 
-        JLabel titre = new JLabel("Tri collectif");
+        JLabel titre = new JLabel("Tri collectif Multi-Agents");
         titre.setHorizontalAlignment(JLabel.CENTER);
         titre.setAlignmentX(Component.CENTER_ALIGNMENT);
         titre.setFont(new Font("serif", Font.PLAIN, 28));
@@ -109,12 +109,12 @@ public class MainWindow extends JFrame implements Observer {
                     	Objet caisse = ((Agent) ca).getObjetPris();
                         
                         if (caisse != null)
-                            if (caisse.getName().equals("A"))
-                                c = new Color(0, 255, 255);
+                            if (caisse.getName().equals('A'))
+                                c = new Color(0, 0, 100); // Un agent portant une caisse A 
                             else
-                                c = new Color(255, 255, 0);
+                                c = new Color(100, 0, 0); // Un agent portant une caisse B
                         else
-                            c = new Color(0, 120, 0);
+                            c = new Color(0, 120, 0); // Un agent seul 
                     }
                 }
 

@@ -63,11 +63,11 @@ import java.util.List;
 public class Main {
     public static void main(String[] args)
     {
-        float kprise = (float) 0.1;
-        float kdepot = (float) 0.3;
-        int nbAgents = 15, nbObjects = 50, mem = 10;
+        float kprise = 0.1f;
+        float kdepot = 0.3f;
+        int nbAgents = 40, nbObjects = 50, mem = 10;
 
-        Grille g = new Grille(50);
+        Grille g = new Grille(30);
 
 
         MainWindow mw = new MainWindow(g);

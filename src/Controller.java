@@ -9,8 +9,8 @@ public class Controller implements ActionListener {
 
     private int nbAgents;
     private int sizeMem;
-    private int kPrise;
-    private int kDepot;
+    private float kPrise;
+    private float kDepot;
     private int nbCaisse;
     
     
@@ -19,6 +19,8 @@ public class Controller implements ActionListener {
         this.nbAgents = nbAgent;
         this.sizeMem = sizeMem;
         this.nbCaisse = nbCaisse;
+        this.kPrise = kPrise;
+        this.kDepot = kDepot;
     }
     
     @Override
@@ -27,15 +29,10 @@ public class Controller implements ActionListener {
         Grille g = view.getModGrille();
 
         //creation des agents
-        Factory fact = new Factory(view.getModGrille(), nbAgents, nbCaisse, sizeMem, kPrise, kDepot);
+        Factory fact = new Factory(view.getModGrille(), this.nbAgents, this.nbCaisse, this.sizeMem, this.kPrise, this.kDepot);
         List<Agent> agents = null;
 		try {
 			agents = fact.creationAgents();
-	        for (Agent a : agents) {
-	            a.start();
-
-	        }
-	        
 		} catch (Exception e2) {
 			// TODO Auto-generated catch block
 			e2.printStackTrace();
@@ -44,15 +41,14 @@ public class Controller implements ActionListener {
 
         //Demarrer tous les agents
         for (Agent a : agents) {
-            //a.addObserver(view);
+            a.addObserver(view);
             Thread t = new Thread(a);
             tAgents.add(t);
             t.start();
         }
 
         view.update();
-        
-        
+
         //Attendre la fin des agents
         new Thread(new Runnable() {
             @Override
@@ -64,8 +60,6 @@ public class Controller implements ActionListener {
                     }
             }
         }).start();
-
-
     }
     
 

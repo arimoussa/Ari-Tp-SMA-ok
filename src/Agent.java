@@ -3,10 +3,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.Observable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class Agent extends Thread {
+public class Agent extends Observable implements Runnable {
 
     private String nom;
     private Coordonnees position;
@@ -17,6 +18,8 @@ public class Agent extends Thread {
     private final float kMOINS;
     private int nbMouvements;
     private Objet objetPris;
+    
+    public static int REFRESH_TIME = 10;
     
     
     
@@ -44,6 +47,11 @@ public class Agent extends Thread {
             try {
                 this.perception();
                 this.action();
+                this.setChanged();
+                this.notifyObservers();
+
+                Thread.sleep(REFRESH_TIME);
+                
             } catch (Exception ex) {
                 Logger.getLogger(Agent.class.getName()).log(Level.SEVERE, null, ex);
             }
