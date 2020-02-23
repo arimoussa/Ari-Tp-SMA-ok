@@ -92,9 +92,7 @@ public class MainWindow extends JFrame implements Observer {
         for (int x = 0; x < modGrille.getTaille(); ++x)
             for (int y = 0; y < modGrille.getTaille(); ++y) {
 
-                //Point p = new Point(x, y);
                 Coordonnees p = new Coordonnees(x,y);
-                //Case ca = modGrille.getCaseAt(p);
                 Object ca =  modGrille.getCase(p);
 
                 Color c = Color.BLACK;
@@ -105,7 +103,6 @@ public class MainWindow extends JFrame implements Observer {
                         c = new Color(255, 0, 0);
                     else if (ca instanceof Agent)
                     {
-                        //Caisse caisse = ((Agent) ca).getMaCaisse();
                     	Objet caisse = ((Agent) ca).getObjetPris();
                         
                         if (caisse != null)
@@ -121,20 +118,11 @@ public class MainWindow extends JFrame implements Observer {
     	        for (Entry<Coordonnees, JPanel> current : cases.entrySet() ) {
 
     	        	if(current.getKey().equals(p) ) {
-        	        	//System.out.println("Key:"+ current.getKey().toString() );
-        	        	//System.out.println("Value:" );
         	        	current.getValue().setBackground(c);
     	        	}
-
-    	        	
     	        }
-               /* 
-                if( cases.get(p) != null ) {
-                    cases.get(p).setBackground(c);
-                }
-                */
-            }
 
+            }
         p.validate();
         p.repaint();
     }

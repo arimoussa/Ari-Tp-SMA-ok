@@ -25,7 +25,6 @@ public class Factory {
     
     protected Agent createAgent()
     {
-       // Agent a = new Agent(String.valueOf(agents.size()), sizeMem, kPrise, kDepot, grille);
         Agent a = new Agent(String.valueOf(agents.size()), this.grille,genererCoordonnees(this.grille),1,this.sizeMem,this.kPrise,this.kDepot);
 
         agents.add(a);
@@ -37,30 +36,12 @@ public class Factory {
     
     public List<Agent> creationAgents() throws Exception
     {
-        //LinkedList<Point> points = new LinkedList<>();
-        
-    	/*
-        LinkedList<Coordonnees> points = new LinkedList<>();
-        for (int x = 0; x < grille.getTaille(); x++) {
-            for (int y = 0; y < grille.getTaille(); y++) {
-                //points.add(new Point(x, y));
-        		points.add(new Coordonnees(x, y));
-            }
-        }
-        */
-
 
         Random r = new Random();
 
         for (int i = 0; i < nbAgents; ++i)
         {
             // Selection points aleatoire pour creer agent
-           /*
-        	int rand = r.nextInt(points.size());
-            Coordonnees p = points.get(rand);
-            points.remove(rand);
-            */
-
             Agent a = this.createAgent();
 
             grille.addAgent(a);
@@ -68,12 +49,7 @@ public class Factory {
 
         for (int i = 0; i < nbCaisse; ++i)
         {
-            // Selection points aleatoire pour creer caisse
-            /*
-        	int rand = r.nextInt(points.size());
-            Coordonnees p = points.get(rand);
-            points.remove(rand);
-            */
+            // Selection points aleatoire pour creer un objet
 
             int randLabel = r.nextInt(2);
             Character label = (randLabel == 0) ? 'A' : 'B'; // type aleatoire
